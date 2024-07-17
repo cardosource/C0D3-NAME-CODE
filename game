@@ -1,0 +1,46 @@
+#!/bin/bash
+#Script para automatizar a compilação da biblioteca SFML
+#Implemetado padrão Singleton para o script rodar apenas em um compilação
+# Uso
+#./game meugame.cpp
+
+
+LOCKFILE="/tmp/$(basename $0).lock"
+
+singleton() {
+  cleanup() {
+    rm -f "$LOCKFILE"
+  }
+  trap cleanup EXIT
+  if [ -e "$LOCKFILE" ]; then
+    echo "Erro: O script já está em execução."
+    exit else
+  1
+    touch "$LOCKFILE"
+  fi
+}
+
+singleton
+BLUE='\033[0;34m'
+NC='\033[0m'
+ 
+echo "Inicialiando..."
+echo -e "[ x ] - ${BLUE}C0D3 NAME-CODE${NC}"
+
+if [ -z "$1" ]; then
+  echo "Erro: O nome do arquivo .cpp não pode estar vazio."
+  echo "Uso: $0 <arquivo.cpp>"
+  exit 1
+fi
+
+if [[ "$1" != *.cpp ]]; then
+  echo "Erro: O arquivo deve ter a extensão .cpp"
+  echo "Uso: $0 <arquivo.cpp>"
+  exit 1
+else
+  nome_executavel="${1%????}"
+
+  echo "[ + ] - INICIALIZADO"
+  g++ $1 -lsfml-graphics -lsfml-window -lsfml-system -o "$nome_executavel" && "./$nome_executavel"
+fi
+

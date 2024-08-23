@@ -41,6 +41,6 @@ else
   nome_executavel="${1%????}"
 
   echo "[ + ] - INICIALIZADO"
-  g++ $1 -lsfml-graphics -lsfml-window -lsfml-system -o "$nome_executavel" && "./$nome_executavel"
+  g++ $1 -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -o "$nome_executavel" && "./$nome_executavel"
 fi
 

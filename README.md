@@ -5,6 +5,6 @@ Esse script em Bash automatiza a compilação de bibliotecas SFML/C++. Utilizand
 
 +1
 
-TEST
++1.1
 ![bash](https://img.shields.io/badge/GNU%20Bash-4EAA25.svg?style=for-the-badge&logo=GNU-Bash&logoColor=white)
 
